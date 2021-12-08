@@ -1,0 +1,174 @@
+{% extends  'store/main.html'%}
+{% load static %}
+
+{% block content %}
+    <br>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box-element">
+                <a class="btn btn-outline-secondary" href="{% url 'store' %}">&#x2190; <b>Continue Shopping</b></a>
+
+                <br>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th>
+                            <h5>Items: <strong>x{{ order.get_cart_items }}</strong></h5>
+                        </th>
+                        <th>
+                            <h5>Total: <strong>${{ order.get_cart_total|floatformat }}</strong></h5>
+                        </th>
+                        <th>
+                            <a style="float: right; margin: 5px" class="btn btn-success" href="{% url 'checkout' %}"><b>Checkout</b></a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+            <br>
+
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex: 2"></div>
+                    <div style="flex: 2"><strong>Item</strong></div>
+                    <div style="flex: 1"><strong>Price</strong></div>
+                    <div style="flex: 1"><strong>Quantity</strong></div>
+                    <div style="flex: 1"><strong>Total</strong></div>
+                </div>
+
+                {% for item in items %}
+
+                <div class="cart-row">
+                    <div style="flex: 2"><img class="row-image" src="{{ item.product.imageURL }}"></div>
+                    <div style="flex: 2">{{ item.product.name }}</div>
+                    <div style="flex: 1">${{ item.product.price|floatformat }}</div>
+                    <div style="flex: 1">
+                        <p class="quantity">x{{ item.quantity }}</p>
+                        <div class="quantity">
+                            <img data-product="{{ item.product.id }}" data-action="add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+                            <img data-product="{{ item.product.id }}" data-action="remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                        </div>
+                    </div>
+                    <div style="flex: 1">${{ item.get_total|floatformat:2 }}</div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <!--Section: Contact v.1-->
+
+        <section class="section pb-5">
+
+            <!--Section heading-->
+            <h2 class="section-heading h1 pt-4" style="text-align: center">Contact us</h2>
+            <br>
+            <hr>
+
+
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-5 mb-4">
+
+                    <!--Form with header-->
+                    <div class="card">
+
+                        <div class="card-body">
+                            <!--Header-->
+                            <div class="form-header blue accent-1">
+                                <h3><i class="fas fa-envelope"></i> Write to us:</h3>
+                            </div>
+
+                            <br>
+
+                            <!--Body-->
+                            <div class="md-form">
+                                <i class="fas fa-user prefix grey-text"></i>
+                                <input type="text" id="form-name" class="form-control" placeholder="Enter your name">
+                                <label for="form-name"></label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-envelope prefix grey-text"></i>
+                                <input type="text" id="form-email" class="form-control" placeholder="Enter your email">
+                                <label for="form-email"></label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-tag prefix grey-text"></i>
+                                <input type="text" id="form-Subject" class="form-control" placeholder="Enter">
+                                <label for="form-Subject"></label>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                <textarea id="form-text" class="form-control md-textarea" rows="3" placeholder="Message"></textarea>
+                                <label for="form-text"></label>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button class="btn btn-success btn-block">Submit</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--Form with header-->
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-7">
+
+                    <!--Google map-->
+                    <div id="map-container-google-11" class="z-depth-1-half map-container-6" style="height: 400px">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d749.478108907891!2d69.22753505155013!3d41.289010166744625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8bf8c3c4935b%3A0xff5733e4f3610069!2sAlibi%20men%20style!5e0!3m2!1sru!2s!4v1625029833487!5m2!1sru!2s"
+                                frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+
+                    <br>
+                    <!--Buttons-->
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <a class="btn-floating blue accent-1"><i class="fas fa-map-marker-alt"></i></a>
+                            <p>Tashkent</p>
+                            <p>Uzbekistan</p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a class="btn-floating blue accent-1"><i class="fas fa-phone"></i></a>
+                            <p>+998-99-051-50-51</p>
+                            <p>Monday - Friday</p>
+                                <p>8:00-22:00</p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a class="btn-floating blue accent-1"><i class="fas fa-envelope"></i></a>
+                            <p>alibi_store@gmail.com</p>
+                            <p>alibimenstyle@gmail.com</p>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+
+        </section>
+
+
+    <!--Section: Contact v.1-->
+
+
+
+
+
+{% endblock content %}
